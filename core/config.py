@@ -16,6 +16,7 @@ class AppConfig(BaseModel):
     top_k_retrieval: int = 10
     top_k_ranking: int = 5
     embedding_model_name: str = Field(..., alias='embedding_model') # Full name after mapping
+    reranker_model: str = "BAAI/bge-reranker-base"
     similarity_metric: str = "L2"
     retrieval_algorithm: str = "AUTOINDEX"
     generation_llm: GenerationLLMConfig
