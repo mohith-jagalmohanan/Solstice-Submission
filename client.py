@@ -23,23 +23,23 @@ def trigger_ingest():
         
         if response.status_code == 200:
             data = response.json()
-            styled_print("\n✅ Success!", "32") # Green
+            styled_print("\n Success!", "32") # Green
             styled_print(f"   Message: {data.get('message')}", "32")
             styled_print(f"   Files to be processed: {data.get('files_processed')}", "32")
         elif response.status_code == 404:
-            styled_print(f"\n❌ Error: {response.status_code}", "31") # Red
+            styled_print(f"\n Error: {response.status_code}", "31") # Red
             styled_print(f"   Detail: {response.json().get('detail')}", "31")
             styled_print("   Hint: Make sure the 'Files' directory exists.", "33")
         else:
-            styled_print(f"\n❌ Unexpected Error: {response.status_code}", "31")
+            styled_print(f"\n Unexpected Error: {response.status_code}", "31")
             styled_print(f"   Response: {response.text}", "31")
             
     except requests.exceptions.ConnectionError:
-        styled_print("\n❌ Connection Error", "31")
+        styled_print("\n Connection Error", "31")
         styled_print(f"   Could not connect to {BASE_URL}.", "31")
         styled_print("   Hint: Is the Uvicorn server running?", "33")
     except Exception as e:
-        styled_print(f"\n❌ An unknown error occurred: {e}", "31")
+        styled_print(f"\n An unknown error occurred: {e}", "31")
 
 def perform_query(query_text: str):
     """Sends a POST request to the /query endpoint with the user's question."""
@@ -52,7 +52,7 @@ def perform_query(query_text: str):
         
         if response.status_code == 200:
             data = response.json()
-            styled_print("\n✅ Answer Received:", "32") # Green
+            styled_print("\n Answer Received:", "32") # Green
             
             # Print the answer with word-wrapping
             import textwrap
@@ -71,15 +71,15 @@ def perform_query(query_text: str):
                 styled_print("\n(No sources found for this answer)", "90") # Gray
                 
         else:
-            styled_print(f"\n❌ Unexpected Error: {response.status_code}", "31")
+            styled_print(f"\n Unexpected Error: {response.status_code}", "31")
             styled_print(f"   Response: {response.text}", "31")
 
     except requests.exceptions.ConnectionError:
-        styled_print("\n❌ Connection Error", "31")
+        styled_print("\n Connection Error", "31")
         styled_print(f"   Could not connect to {BASE_URL}.", "31")
         styled_print("   Hint: Is the Uvicorn server running?", "33")
     except Exception as e:
-        styled_print(f"\n❌ An unknown error occurred: {e}", "31")
+        styled_print(f"\n An unknown error occurred: {e}", "31")
 
 def main():
     """Main function to parse arguments and call the correct API function."""
