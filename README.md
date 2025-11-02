@@ -22,11 +22,16 @@ If the above step fails, follow the steps given below:
 3. Pull the required model using: ollama pull <model-name>. For small model, choose "gemma3:1b"
 4. "ollama list" to verify LLM has been downloaded
 
-## Running the system
+## Hosting the API (Server start)
 0. Add required files to Files/
 1. Start ollama server and set generation_llm.model in config.py with model
-1. Run "uvicorn api.main:app --reload" to start the server on terminal
-2. Open "http://127.0.0.1:8000/docs" on browser
-3. Use ingest/ endpoint to ingest files
-4. Use query/ endpoint to ask query. Invoke endpoint by sending payload with "query" as key and question (string) as value
-5. Ctrl+C for closing the server session
+2. Run "uvicorn api.main:app --reload" to start the server on terminal
+
+## Client code
+1. Run: "python client.py" and follow instructions
+
+NOTE: To test the APIs through browser, follow the steps below:
+1. Open "http://127.0.0.1:8000/docs" on browser
+2. Use ingest/ endpoint to ingest files
+3. Use query/ endpoint to ask query. Invoke endpoint by sending payload with "query" as key and question (string) as value
+4. Ctrl+C for closing the server session
