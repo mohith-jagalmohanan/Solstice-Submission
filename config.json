@@ -5,6 +5,7 @@
     "top_k_retrieval": 10,
     "top_k_ranking": 5,
     "embedding_model": "MiniLM",
+    "reranker_model": "BAAI/bge-reranker-base",
     "similarity_metric": "L2",
     "retrieval_algorithm": "AUTOINDEX",
     "generation_llm": {
