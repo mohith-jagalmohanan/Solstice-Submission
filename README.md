@@ -35,3 +35,31 @@ NOTE: To test the APIs through browser, follow the steps below:
 2. Use ingest/ endpoint to ingest files
 3. Use query/ endpoint to ask query. Invoke endpoint by sending payload with "query" as key and question (string) as value
 4. Ctrl+C for closing the server session
+5. Some queries to try out:
+    - When was Gandhiji assassinated
+    - Who was Elon Musk's father?
+    - Where was Einstein born?
+
+## Improvements to be made
+
+### API-level changes:
+1. Have a file upload API for document ingestion. This is more useful from a user experience point of view
+
+### Automated Testing:
+Ideally I would want to test out the system in the following manner:
+1. Given a set of documents chunked and persisted (ingested), annotate a relevance set (of chunks) for each query. Since I do not want to miss out on unwanted information relevant to the query, I would measure Recall@k and ideally optimize for this
+2. For the final generation of response for the given query, I would use a BLEU score/ROUGE score (ideally BLEU to focus on precision of generation)
+
+### Chat feature:
+1. Current system does not allow chat functionality as previous context is lost.
+2. Storing chat functionality might invoke new challenges like:
+    - Having to summarize older context information to save context window
+    - Having to rephrase current query with information from previous chats and previous retrieval responses
+    - Ideally an agentic RAG system is good to handle such interactions, if enough context length is available
+
+### Using better LLM:
+1. Currently I am using one of the smallest opensource LLMs available (Gemma3 1Billion model). This was a conscious choice for this project because:
+    - On working with the Gemma3 1 billion model, I realized that this model has very less "knowledge". For example if I ask (without relevant context) about who Elon Musk's father is, it would hallucinate. If my system is giving the right ansswer, it is proof that the correct context has been picked
+    - The model inference is very fast even on a laptop
+
+However going forward, it is better to use a bigger model
